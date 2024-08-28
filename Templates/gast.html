@@ -1,0 +1,58 @@
+{% load static %}
+
+<!-- Not included page -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/gast.css' %}">
+    <title>Hatikwa gasten</title>
+</head>
+
+<style>
+    .main .file::before {
+        background-image: url('{% static "IMG/Icons/file-icon.png" %}');
+    }
+</style>
+
+<div class="head">
+    <div class="nav">
+        <a href="/">Home</a>
+    </div>
+    <hr class="top-bar">
+    <img class="top-logo" src="{% static 'IMG/Main/Logo.jpg' %}" alt="Hatikwa-Logo">
+</div>
+<body>
+    <div class="bannerbox">
+        <div class="center">
+            <H1>Hatikwa</H1>
+            <p>Welkom op de gasten pagina van de Hatikwa media site, op deze site staat al onze bladmuziek en andere media</p>
+            <p>Eigenlijk kunnen alleen leden van Hatikwa al deze content bekijken, maar bij onder anderen open repetities is het toch makkelijk als jij ook de bladmuziek hebt</p>
+            <p>Onderaan deze pagina vind je alle bladmuziek die wij aan gasten openbaar maken om mee te doen</p>
+            <p>Wil je toch gewoon alle muziek of media kunnen zien, word dan maar gewoon lid bij ons gezellige koor! :)</p>
+        </div>
+    </div>
+    <div class="main">
+        <h2 class="section-title">Bestanden</h2>
+        <hr class="spacer">
+        {% if items == None %}
+        <p>Op het moment zijn er geen liederen beschikbaar voor gasten</p>
+        <p>Klopt dit niet of op zoek naar iets anders?</p>
+        <p>Neem dan contact op met Sebastiaan of het Bestuur</p>
+        {% else %}
+        {% for item in items %}
+        <li class="file"><a href="/songs/song/{{ item }}">{{ item }}</a></li>
+        <br>
+        {% endfor %}
+        {% endif %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</body>
+</html>

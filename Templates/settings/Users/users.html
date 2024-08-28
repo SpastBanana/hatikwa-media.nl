@@ -1,0 +1,80 @@
+{% load static %}
+
+<!-- Included page -->
+
+<head>
+    <link rel="stylesheet" href="{% static 'CSS/settings/Users/users.css' %}">
+</head>
+
+<style>
+    main .folder::before {
+        content: "";
+        display: inline-block;
+        width: 40px; /* Adjust this value to the desired width of the image */
+        height: 40px; /* Adjust this value to the desired height of the image */
+        background-image: url('{% static "IMG/Icons/folder-icon.png" %}');
+        background-repeat: no-repeat;
+        background-position: center;
+        vertical-align: middle;
+        margin-right: 5px; /* Adjust this value to provide spacing between the icon and text */
+    }
+</style>
+
+<main>
+    <div class="center-box">
+        <a class="create-user-btn" href="/admin/users/create-user">Create user</a>
+
+        <div class="section">
+            <div class="section-title-holder">
+                <h2 class="section-title">Super user / Site administrator</h2>
+                <hr>
+            </div>
+            {% for user in bestuur %}
+            <div class="user-grid">
+                <p class="user-item-1">{{ user.first_name }} {{ user.last_name }}</p>
+                <p class="user-item-2">{{ user.email }}</p>
+                <p class="user-item-2">Role: Bestuur</p>
+            </div>
+            {% endfor %}
+            {% for user in dirigent %}
+            <div class="user-grid">
+                <p class="user-item-1">{{ user.first_name }} {{ user.last_name }}</p>
+                <p class="user-item-2">{{ user.email }}</p>
+                <p class="user-item-2">Role: dirigent</p>
+            </div>
+            {% endfor %}
+            {% for user in pr %}
+            <div class="user-grid">
+                <p class="user-item-1">{{ user.first_name }} {{ user.last_name }}</p>
+                <p class="user-item-2">{{ user.email }}</p>
+                <p class="user-item-2">Role: pr</p>
+            </div>
+            {% endfor %}
+            {% for user in admin %}
+            <div class="user-grid">
+                <p class="user-item-1">{{ user.first_name }} {{ user.last_name }}</p>
+                <p class="user-item-2">{{ user.email }}</p>
+                <p class="user-item-2">Role: admin</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="section">
+            <div class="section-title-holder">
+                <h2 class="section-title">Users</h2>
+                <hr>
+            </div>
+            {% for user, pending in siteusers %}
+            <div class="user-grid">
+                <p class="user-item-1">{{ user.first_name }} {{ user.last_name }}</p>
+                <p class="user-item-2">{{ user.email }}</p>
+                <p class="user-active">Account status: {% if pending == True %}Mail verstuurd, in afwachting...{% else %}Lid van site{% endif %}</p>
+                <div class="resdel-block">
+                    <a class="user-item-3" href="/admin/users/reset-user/{{ user.email }}">Reset password</a>
+                    <a class="user-item-4" href="/admin/users/delete-user/{{ user.email }}">Delete user</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>

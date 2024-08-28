@@ -1,0 +1,39 @@
+{% load static %}
+
+<!-- Included page -->
+
+<head>
+    <link rel="stylesheet" href="{% static 'CSS/repetoire.css' %}">
+</head>
+
+<div class="welcome-box">
+    {% if user.first_name != "" %}
+    {% if user.last_name != "" %}
+    <h3 class="welcome">Welkom {{ user.first_name }} {{ user.last_name }}</h3>
+    {% endif %}
+    {% if user.last_name == "" %}
+    <h3 class="welcome">Welkom {{ user.first_name }}</h3>
+    {% endif %}
+    {% endif %}
+</div>
+<main>
+    <h2 class="section-title">Actief repetoire</h2>
+    <hr>
+    {% for song in active %}
+    <li class="file"><a href="/songs/song/{{ song.song_name }}">{{ song.song_name }}</a></li>
+    {% endfor %}
+    <br class="item-break">
+
+    <h2 class="section-title">Inactief repetoire</h2>
+    <hr>
+    {% for song in inactive %}
+    <li class="file"><a href="/songs/song/{{ song.song_name }}">{{ song.song_name }}</a></li>
+    {% endfor %}
+    <br class="item-break">
+
+    <h2 class="section-title">Mappen</h2>
+    <hr>
+    {% for song in folders %}
+    <li class="folder"><a href="/songs/song/{{ song.song_name }}">{{ song.song_name }}</a></li>
+    {% endfor %}
+</main>
